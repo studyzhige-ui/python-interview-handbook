@@ -1,114 +1,52 @@
-# Python 秋招面试知识手册
+# Python Interview Handbook — 已迁移
 
-> 面向秋招面试的 Python 基础知识体系：从基础语法、对象模型、容器、函数与作用域，到 OOP、异常、文件、迭代器/生成器/装饰器、并发与异步，再到高频面试题与面试前速查。
+> **本仓库已停止作为主版本维护。**
+>
+> Python 手册已经完整并入统一的 **AI Application Interview Handbook**，后续新增内容、修订、面经映射和 AI 工程扩展都只在新仓库维护。
 
-## 这份手册适合谁
+## 新的主仓库
 
-- 学过几遍 Python 基础，但知识不够系统、容易遗忘；
-- 需要为秋招/实习面试快速建立完整 Python 知识框架；
-- 不希望只背“八股”，而是希望能理解概念、看懂例子、回答追问；
-- 希望用表格、代码、图解、易错点和面试话术反复复习。
+- 总仓库：[`studyzhige-ui/ai-application-interview-handbook`](https://github.com/studyzhige-ui/ai-application-interview-handbook)
+- Python 模块：[`python/`](https://github.com/studyzhige-ui/ai-application-interview-handbook/tree/main/python)
+- FastAPI 模块：[`fastapi/`](https://github.com/studyzhige-ui/ai-application-interview-handbook/tree/main/fastapi)
+- AI Backend Engineering：[`backend-engineering/`](https://github.com/studyzhige-ui/ai-application-interview-handbook/tree/main/backend-engineering)
 
-## 推荐使用方式
+## 迁移说明
 
-1. **第一遍：建立框架。** 按 `docs/` 的顺序通读，不要求记住所有细节。
-2. **第二遍：重点理解。** 对可变/不可变、深浅拷贝、作用域、迭代器、生成器、装饰器、OOP、GIL/并发等高频点动手跑代码。
-3. **每章读完：图解 + 自测。** 进入 [`review/`](review/README.md)，先看图把知识串起来，再做题；参考答案默认折叠，必须主动点击才会显示。
-4. **第三遍：面试化表达。** 使用 `interview/高频面试题.md`，尝试先口述，再看答案。
-5. **面试前：快速复习。** 只看 `interview/面试前速查表.md`。
+原仓库中的内容已经迁入新仓库，包括：
 
-## 内容结构
+- `docs/`：12 章 Python 系统知识；
+- `review/`：12 章 Mermaid 图解 + 默认折叠自测答案；
+- `interview/`：高频面试题、Coding 小题、易错点、面试前速查表。
 
-| 模块 | 内容 | 面试重要度 |
-|---|---|---:|
-| Python 基础 | 对象、变量、类型、运算、真值判断 | ⭐⭐⭐⭐ |
-| 核心容器 | list / tuple / set / dict / str | ⭐⭐⭐⭐⭐ |
-| 对象与拷贝 | 可变不可变、`==`/`is`、浅拷贝深拷贝 | ⭐⭐⭐⭐⭐ |
-| 函数 | 参数、`*args`/`**kwargs`、作用域、闭包、lambda | ⭐⭐⭐⭐⭐ |
-| Pythonic 写法 | 推导式、`enumerate`、`zip`、`sorted`、`map/filter` | ⭐⭐⭐⭐ |
-| 迭代体系 | Iterable / Iterator / Generator / `yield` | ⭐⭐⭐⭐⭐ |
-| 装饰器与上下文 | decorator、`with`、context manager | ⭐⭐⭐⭐⭐ |
-| OOP | 类与对象、继承、多态、方法、魔术方法 | ⭐⭐⭐⭐⭐ |
-| 稳健代码 | 异常、文件、模块与导入 | ⭐⭐⭐⭐ |
-| 运行机制 | 内存、垃圾回收、GIL | ⭐⭐⭐⭐ |
-| 并发 | 线程、进程、协程、`async`/`await` | ⭐⭐⭐⭐⭐ |
-| 高频题 | Python 高频问答、Coding 小题、易错点 | ⭐⭐⭐⭐⭐ |
+原仓库继续保留，作为历史快照和旧链接兼容入口，但**不要在这里继续新增或修改正文**。
 
-## 文档导航
+## 为什么迁移
 
-### 基础与核心语法
+目标已经从单独准备 Python 面试，升级为完整的 **AI Application / Agent 开发求职知识体系**：
 
-- [01. Python 基础与对象模型](docs/01-python基础与对象模型.md)
-- [02. 核心数据类型与容器](docs/02-核心数据类型与容器.md)
-- [03. 可变对象、对象身份与深浅拷贝](docs/03-可变对象-对象身份-深浅拷贝.md)
-- [04. 函数、参数、作用域与闭包](docs/04-函数-参数-作用域-闭包.md)
-- [05. Lambda、推导式与常用内置函数](docs/05-lambda-推导式-常用内置函数.md)
+```text
+Python
+  ↓
+FastAPI
+  ↓
+AI Backend Engineering
+  ↓
+MySQL
+  ↓
+Redis
+  ↓
+Vector DB
+  ↓
+RAG
+  ↓
+Agent Harness / Runtime
+  ↓
+System Design
+```
 
-### Python 进阶核心
+Python 仍然是第一层基础，但它现在会与 FastAPI、异步服务、数据库、缓存、RAG 和 Agent Runtime 形成统一的面试知识图谱。
 
-- [06. 迭代器、生成器与 yield](docs/06-迭代器-生成器-yield.md)
-- [07. 装饰器与上下文管理器](docs/07-装饰器-上下文管理器.md)
-- [08. 面向对象与魔术方法](docs/08-面向对象-魔术方法.md)
-- [09. 异常、文件、模块与导入](docs/09-异常-文件-模块与导入.md)
-- [10. 内存管理、垃圾回收与 GIL](docs/10-内存管理-垃圾回收-GIL.md)
-- [11. 线程、进程、协程与 async/await](docs/11-线程-进程-协程-async-await.md)
-- [12. 常见数据结构与复杂度](docs/12-常见数据结构与复杂度.md)
+---
 
-### 图解与章节自测
-
-- [12 章图解复习与自测总入口](review/README.md)
-
-每一章都配有 Mermaid 图解和章节自测。自测答案采用 GitHub 原生 `<details>` 折叠块，默认不会显示；建议先完整回答，再点开参考答案。
-
-### 面试专项
-
-- [Python 高频面试题](interview/高频面试题.md)
-- [Python 高频 Coding 小题](interview/Python高频Coding小题.md)
-- [面试易错点](interview/面试易错点.md)
-- [面试前速查表](interview/面试前速查表.md)
-
-## 每个知识点的写法
-
-尽量遵循下面的顺序：
-
-> **先讲人话 → 准确定义 → 代码示例 → 对比表格 → 为什么 → 图解串联 → 面试怎么答 → 常见追问 → 章节自测**
-
-文档中的标记：
-
-- 💡 **新手理解**：先用直观语言建立感觉；
-- 🧠 **为什么**：补充底层逻辑；
-- ⚠️ **易错点**：面试中容易说错或写错的地方；
-- 🎯 **面试怎么答**：适合口述的答案框架；
-- 🔍 **追问**：面试官可能继续深入的问题。
-
-## 面经如何融入这套体系
-
-这份手册不会把原有高频面经机械地“逐题搬运”或另建一份孤立题库，而是把其中有价值的知识内化到对应章节。
-
-例如：
-
-- GIL、I/O 密集与 CPU 密集 → `10`、`11` 章；
-- `*args` / `**kwargs`、默认可变参数 → `03`、`04` 章；
-- list / tuple / set / dict、字典排序、去重 → `02`、`05` 章；
-- 深浅拷贝、`is` / `==`、参数传递 → `03` 章；
-- 装饰器、生成器、迭代器、推导式、上下文管理器 → `05`～`07` 章；
-- `__slots__`、实例/类/静态方法、`__new__` / `__init__`、OOP → `08` 章；
-- 异常、assert、文件删除、import 顺序 → `09` 章；
-- 数组、链表、栈、队列、堆、Top K → `12` 章；
-- `async` / `await` → `11` 章。
-
-这样复习时面对的是一套统一知识体系，而不是“教材一份、面经一份、题库又一份”。
-
-## 关于图解
-
-当前优先采用 **Mermaid**：GitHub 可以直接渲染，文字清晰，能跟随代码一起版本管理，也便于以后修改知识结构。对于对象引用、深浅拷贝、LEGB、yield、装饰器、GIL、事件循环、Top K 等概念，图解页都提供了流程图或状态图。
-
-后续如果需要更适合打印、分享或做封面的视觉版本，可以继续增加 `assets/` 中的静态插画，而不改变正文知识体系。
-
-## 关于版本
-
-本手册以现代 **Python 3** 为基础。涉及具体实现细节（尤其是 CPython、GIL、内存管理）时会明确说明，避免把“CPython 的实现”误说成“Python 语言规范”。
-
-## 参考资料
-
-内容以 Python 官方文档为权威参考，并结合已有的 Python 高频面经进行扩展整理。面经用于帮助确定高频考点和典型问法；系统文档则补充背景、边界条件、图解、自测与更完整的解释。
+**Canonical Source：** 后续请以 `ai-application-interview-handbook` 为准。
