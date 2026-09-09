@@ -6,10 +6,10 @@
 
 ```mermaid
 flowchart LR
-    A[名字 a] --> O1[列表对象<br/>[1, 2]]
-    B[名字 b] --> O1
-    O1 --> E1[元素 1]
-    O1 --> E2[元素 2]
+    A["名字 a"] --> O1["列表对象［1, 2］"]
+    B["名字 b"] --> O1
+    O1 --> E1["元素 1"]
+    O1 --> E2["元素 2"]
 ```
 
 当执行 `b = a` 时，没有复制列表，只是让 `b` 也指向同一个对象。因此 `b.append(3)` 后，`a` 看到的内容也变化。
@@ -18,21 +18,21 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    O[Python 对象] --> I[identity<br/>是不是同一个对象]
-    O --> T[type<br/>对象是什么类型]
-    O --> V[value<br/>对象表示什么值]
-    I --> IS[is]
-    T --> TYPE[type / isinstance]
-    V --> EQ[==]
+    O["Python 对象"] --> I["identity：是不是同一个对象"]
+    O --> T["type：对象是什么类型"]
+    O --> V["value：对象表示什么值"]
+    I --> IS["is"]
+    T --> TYPE["type / isinstance"]
+    V --> EQ["=="]
 ```
 
 ## 图解 3：动态类型的本质是“名字可以重新绑定”
 
 ```mermaid
 flowchart LR
-    X1[x] --> N[整数 10]
-    X2[x 重新赋值] --> S[字符串 hello]
-    X3[x 再次赋值] --> L[列表 1,2,3]
+    X1["x"] --> N["整数 10"]
+    X2["x 重新赋值"] --> S["字符串 hello"]
+    X3["x 再次赋值"] --> L["列表 1, 2, 3"]
 ```
 
 类型属于对象，不属于变量名本身。

@@ -6,19 +6,19 @@
 
 ```mermaid
 flowchart LR
-    DATA[输入序列] --> MAP[map / 推导式<br/>每个元素做变换]
-    DATA --> FILTER[filter / 条件推导式<br/>保留符合条件元素]
-    DATA --> REDUCE[reduce<br/>不断累计成一个结果]
+    DATA["输入序列"] --> MAP["map / 推导式：每个元素做变换"]
+    DATA --> FILTER["filter / 条件推导式：保留符合条件元素"]
+    DATA --> REDUCE["reduce：不断累计成一个结果"]
 ```
 
 ## 图解 2：`sorted` 的 key 到底做什么
 
 ```mermaid
 flowchart LR
-    A[原元素] --> K[key 函数]
-    K --> V[得到排序依据]
-    V --> S[按依据排序]
-    S --> R[返回新的 list]
+    A["原元素"] --> K["key 函数"]
+    K --> V["得到排序依据"]
+    V --> S["按依据排序"]
+    S --> R["返回新的 list"]
 ```
 
 例如 `sorted(users, key=lambda x: x["age"])` 并不是直接“比较字典”，而是先为每个用户提取 age 作为排序依据。
