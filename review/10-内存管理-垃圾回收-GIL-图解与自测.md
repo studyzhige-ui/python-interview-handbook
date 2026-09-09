@@ -6,21 +6,21 @@
 
 ```mermaid
 flowchart TD
-    A[对象被名字/容器引用] --> B[引用计数 > 0]
-    B --> C{引用计数降到 0?}
-    C -- 是 --> D[通常可立即释放]
-    C -- 否 --> E{是否存在不可达循环引用?}
-    E -- 是 --> F[循环 GC 检测并回收]
-    E -- 否 --> G[继续存活]
+    A["对象被名字或容器引用"] --> B["引用计数大于 0"]
+    B --> C{"引用计数降到 0？"}
+    C -->|是| D["通常可立即释放"]
+    C -->|否| E{"是否存在不可达循环引用？"}
+    E -->|是| F["循环 GC 检测并回收"]
+    E -->|否| G["继续存活"]
 ```
 
 ## 图解 2：为什么循环引用不能只靠引用计数
 
 ```mermaid
 flowchart LR
-    A[a 列表] --> B[b 列表]
+    A["a 列表"] --> B["b 列表"]
     B --> A
-    X[外部引用] -. 已删除 .-> A
+    X["外部引用"] -.->|已删除| A
 ```
 
 外部已经无法访问这两个对象，但它们仍互相引用，因此引用计数未必会自然变成 0。
@@ -29,13 +29,13 @@ flowchart LR
 
 ```mermaid
 sequenceDiagram
-    participant T1 as 线程1
+    participant T1 as 线程 1
     participant G as GIL
-    participant T2 as 线程2
+    participant T2 as 线程 2
     T1->>G: 获取 GIL
     G-->>T1: 执行 Python 字节码
     T2->>G: 等待
-    T1-->>G: 释放 / 进入等待
+    T1-->>G: 释放 GIL 或进入等待
     G-->>T2: 获得执行机会
 ```
 
@@ -43,11 +43,11 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    A[任务] --> B{主要时间花在等待 I/O?}
-    B -- 是 --> C[线程 / asyncio]
-    B -- 否 --> D{纯 Python CPU 密集?}
-    D -- 是 --> E[多进程]
-    D -- 否 --> F[看底层库是否释放 GIL / 是否已有并行实现]
+    A["任务"] --> B{"主要时间花在等待 I/O？"}
+    B -->|是| C["线程 / asyncio"]
+    B -->|否| D{"纯 Python CPU 密集？"}
+    D -->|是| E["多进程"]
+    D -->|否| F["看底层库是否释放 GIL，或是否已有并行实现"]
 ```
 
 ---
