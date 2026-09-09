@@ -6,21 +6,21 @@
 
 ```mermaid
 flowchart LR
-    I[Iterable<br/>可迭代对象] -- iter(obj) --> IT[Iterator<br/>迭代器]
-    IT -- next() --> V1[下一个值]
-    IT -- next() --> V2[再下一个值]
-    IT -- 没值了 --> STOP[StopIteration]
+    I["Iterable：可迭代对象"] -->|iter| IT["Iterator：迭代器"]
+    IT -->|next| V1["下一个值"]
+    IT -->|再次 next| V2["再下一个值"]
+    IT -->|没有更多值| STOP["StopIteration"]
 ```
 
 ## 图解 2：for 循环的核心过程
 
 ```mermaid
 flowchart TD
-    A[for x in data] --> B[it = iter(data)]
-    B --> C[next(it)]
-    C -->|拿到值| D[执行循环体]
+    A["for x in data"] --> B["it = iter(data)"]
+    B --> C["调用 next(it)"]
+    C -->|拿到值| D["执行循环体"]
     D --> C
-    C -->|StopIteration| E[结束循环]
+    C -->|StopIteration| E["结束循环"]
 ```
 
 ## 图解 3：yield 是“暂停并保存现场”
@@ -28,10 +28,10 @@ flowchart TD
 ```mermaid
 stateDiagram-v2
     [*] --> Start
-    Start --> Yield1: next()
-    Yield1 --> Yield2: next() 从上次位置继续
-    Yield2 --> Yield3: next()
-    Yield3 --> Done: 再次继续并结束
+    Start --> Yield1: 第一次 next
+    Yield1 --> Yield2: 再次 next，从上次位置继续
+    Yield2 --> Yield3: 再次 next
+    Yield3 --> Done: 继续执行直到结束
     Done --> [*]
 ```
 
